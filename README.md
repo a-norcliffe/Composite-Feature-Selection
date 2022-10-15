@@ -4,13 +4,13 @@
 
 Official code for the paper [**Composite Feature Selection using Deep Ensembles**](https://github.com/a-norcliffe/Composite-Feature-Selection)
 (
-[Fergus Imrie](https://fimrie.github.io/)
+[Fergus Imrie](https://fimrie.github.io/),
 [Alexander Norcliffe](https://twitter.com/alexnorcliffe98), 
 [Pietro Liò](https://www.cl.cam.ac.uk/~pl219/),
 [Mihaela van der Schaar](https://www.vanderschaar-lab.com/prof-mihaela-van-der-schaar/)
 )
 
-Current feature selection methods only return a list of predictive features. However, features often don't act alone, but with each other. Take XOR as a simple example, feature 1 **literally** provides
+Current feature selection methods only return a list of predictive features. However, features often don't act alone, but with each other. Take XOR as a simple example, feature 1 *literally* provides
 no information without also knowing the value of feature 2 and vice versa. This work aims to solve the problem of **Composite Feature Selection**, where we find the groups of features that act together. 
 
 ![Deep Graph Mapper](figures/compfs_model_figure.png)
@@ -56,7 +56,7 @@ To be written.
 
 
 ## Citation
-If our paper or code helped you in your own research, please cite our work as
+If our paper or code helped you in your own research, please cite our work as:
 ```
 @article{imrie2022compfs,
   title={{C}omposite {F}eature {S}election using {D}eep {E}nsembles},
