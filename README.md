@@ -51,7 +51,7 @@ $ pip install -r requirements.txt
 ### Datasets
 The datasets have not been included here to save space. Download each dataset and place in the following folders:
 - Chemisty Data: [Link](https://github.com/google-research/graph-attribution/raw/main/data/all_16_logics_train_and_test.zip) store data in *datasets/chem_data/* (copy and paste from the 'all_16_logics_train_and_test' folder)
-- Metabric Data: [Link](https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric) store data in $datasets/metabric/data*
+- Metabric Data: [Link](https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric) store data in *datasets/metabric_data*
 
 ### Running the Experiments
 To be written.
