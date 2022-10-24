@@ -42,7 +42,7 @@ We demonstrate the utility of our model on multiple synthetic tasks and semi-syn
 ### Installing Packages
 We used `python 3.7` for this project. To setup the virtual environment and necessary packages, please run the following commands:
 ```bash
-$ conda create -n compfs python=3.7
+$ conda create --name compfs python=3.7
 $ conda activate compfs
 $ pip install -r requirements.txt
 ```
@@ -50,13 +50,13 @@ $ pip install -r requirements.txt
 
 ### Datasets
 The datasets have not been included here to save space. Download each dataset and place in the following folders:
-- Chemisty Data: [Link](https://github.com/google-research/graph-attribution/raw/main/data/all_16_logics_train_and_test.zip) store data in *datasets/chem_data/* (copy and paste from the 'all_16_logics_train_and_test' folder)
-- Metabric Data: [Link](https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric) store data in *datasets/metabric_data*
+- Chemisty Data: [Link](https://github.com/google-research/graph-attribution/raw/main/data/all_16_logics_train_and_test.zip), store data in *datasets/chem_data/* (copy and paste from the 'all_16_logics_train_and_test' folder)
+- Metabric Data: [Link](https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric), store data in *datasets/metabric_data/*
 
 ### Running the Experiments
 To be written.
 
-### Running CompFS "in the wild"
+### Running CompFS on your Data
 To be written.
 
 
@@ -71,3 +71,9 @@ If our paper or code helped you in your own research, please cite our work as:
   year={2022}
 }
 ```
+
+## Acknowledgements
+We thank the anonymous reviewers for their comments and suggestions for this paper.
+At the time of this work, Fergus Imrie and Mihaela van der Schaar are supported by the National Science Foundation (NSF, grant number 1722516).
+Mihaela van der Schaar is additionally supported by the Office of Naval Research (ONR). Alexander Norcliffe is supported by a GlaxoSmithKline grant.
+We would also like to thank Bogdan Cebere and Evgeny Saveliev for reviewing this code. 

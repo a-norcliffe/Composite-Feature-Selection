@@ -1,0 +1,47 @@
+astroid==2.4.2
+brotlipy==0.7.0
+certifi @ file:///C:/b/abs_ac29jvt43w/croot/certifi_1665076682579/work/certifi
+cffi @ file:///C:/Windows/Temp/abs_6808y9x40v/croots/recipe/cffi_1659598653989/work
+charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
+colorama==0.4.4
+cryptography @ file:///C:/ci/cryptography_1652101770956/work
+cycler==0.11.0
+fonttools==4.37.4
+idna @ file:///tmp/build/80754af9/idna_1637925883363/work
+isort==5.6.4
+joblib==1.2.0
+kiwisolver==1.4.4
+lazy-object-proxy==1.4.3
+matplotlib==3.5.3
+mccabe==0.6.1
+mkl-fft==1.3.1
+mkl-random @ file:///C:/ci/mkl_random_1626186163140/work
+mkl-service==2.4.0
+numpy==1.21.6
+packaging==21.3
+pandas==1.3.5
+Pillow==9.2.0
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pylint==2.6.0
+pyOpenSSL @ file:///opt/conda/conda-bld/pyopenssl_1643788558760/work
+pyparsing==3.0.9
+PySocks @ file:///C:/ci/pysocks_1594394709107/work
+python-dateutil==2.8.2
+pytz==2022.4
+rdkit==2022.3.5
+requests @ file:///C:/ci/requests_1657735288441/work
+scikit-learn==1.0.2
+scipy==1.7.3
+six==1.15.0
+sklearn==0.0
+threadpoolctl==3.1.0
+toml==0.10.2
+torch==1.12.1
+torchaudio==0.12.1
+torchvision==0.13.1
+typed-ast==1.4.1
+typing_extensions==4.4.0
+urllib3 @ file:///C:/Windows/TEMP/abs_65ynz4fdmi/croots/recipe/urllib3_1659110473919/work
+win-inet-pton @ file:///C:/ci/win_inet_pton_1605306165655/work
+wincertstore==0.2
+wrapt==1.12.1
