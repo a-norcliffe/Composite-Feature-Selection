@@ -1,3 +1,5 @@
+"""Base models for CompFS paper, act as trainers for models."""
+
 import numpy as np
 from functools import reduce
 from sklearn import cluster

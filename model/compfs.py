@@ -8,7 +8,7 @@ import numpy as np
 import os
 import os.path as osp
 
-from model.array_in_list import is_array_in_list
+from model.utils import is_array_in_list
 
 
 class FullyConnected(nn.Module):

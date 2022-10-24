@@ -1,3 +1,5 @@
+"""Implementations of Random Forests and GBDT."""
+
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.metrics import roc_auc_score
@@ -5,18 +7,19 @@ from sklearn.metrics import roc_auc_score
 import os
 import os.path as osp
 
-from model.array_in_list import is_array_in_list
+from model.utils import is_array_in_list
 
 class RandomForests:
     '''
-    Implementation of group feature selection using random forests
-    parameters:
-    n_estimators: how many trees in the ensemble
-    random_state: random seed
-    max_depth: maximum depth of decision tree
-    n_top_trees: number of trees to use for group feature selection
-    max_idx: max number of features to consider
-    threshold: feature importance threshold 
+    Implementation of group feature selection using random forests.
+    
+    Args (as dict):
+        n_estimators: how many trees in the ensemble
+        random_state: random seed
+        max_depth: maximum depth of decision tree
+        n_top_trees: number of trees to use for group feature selection
+        max_idx: max number of features to consider
+        threshold: feature importance threshold 
     '''
     def __init__(self, config_dict):
         super(RandomForests, self).__init__()
@@ -76,7 +79,17 @@ class RandomForests:
 
 
 class GBDT(RandomForests):
-
+    '''
+    Implementation of group feature selection using gradient boosted decision trees.
+    
+    Args (as dict):
+        n_estimators: how many trees in the ensemble
+        random_state: random seed
+        max_depth: maximum depth of decision tree
+        n_top_trees: number of trees to use for group feature selection
+        max_idx: max number of features to consider
+        threshold: feature importance threshold 
+    '''
     def __init__(self, config_dict):
         super().__init__(config_dict)
         self.rf = GradientBoostingClassifier(n_estimators=config_dict['n_estimators'], max_depth=config_dict['max_depth'])

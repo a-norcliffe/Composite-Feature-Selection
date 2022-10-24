@@ -12,7 +12,6 @@ from model.thresholding_functions import make_lambda_threshold, make_top_k_thres
 default_config = {
     'data_info': {
         'dataset': datasets.ChemistryBinding, 
-        'nclasses': 2,
         'data_config': {
             'rule': 4,
             'train': True
@@ -48,7 +47,7 @@ default_config = {
                 'lr': 0.003,
                 'lr_decay': 0.99,
                 'batchsize': 20,
-                'num_epochs': 35,
+                'num_epochs': 20,
                 'loss_func': nn.CrossEntropyLoss(),
                 'val_metric': metrics.accuracy,
                 'in_dim': 84,

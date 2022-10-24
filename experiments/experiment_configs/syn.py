@@ -12,7 +12,6 @@ from model.thresholding_functions import make_lambda_threshold, make_top_k_thres
 default_config = {
     'data_info': {
         'dataset': datasets.SyntheticGaussian, 
-        'nclasses': 2,
         'data_config': {
             'nfeatures': 500,
             'rule': 1,
@@ -49,7 +48,7 @@ default_config = {
                 'lr': 0.003,
                 'lr_decay': 0.99,
                 'batchsize': 100,
-                'num_epochs': 35,
+                'num_epochs': 20,
                 'loss_func': nn.CrossEntropyLoss(),
                 'val_metric': metrics.accuracy,
                 'in_dim': 500,
@@ -87,7 +86,7 @@ default_config = {
                 'lr': 0.001,
                 'lr_decay': 1.00,
                 'batchsize': 100,
-                'num_epochs': 250,
+                'num_epochs': 200,
                 'loss_func': nn.CrossEntropyLoss(),
                 'val_metric': metrics.accuracy,
                 'in_dim': 500,
@@ -162,7 +161,7 @@ syn2_config['model_info']['oracle_cluster']['true_groups'] = datasets.gauss_grou
 
 syn3_config = copy.deepcopy(default_config)
 syn3_config['data_info']['data_config']['rule'] = 3
-syn2_config['model_info']['compfs1']['model_config']['beta_s'] = 0.025
+syn3_config['model_info']['compfs1']['model_config']['beta_s'] = 0.025
 syn3_config['model_info']['oracle']['true_groups'] = datasets.gauss_groups[3]
 syn3_config['model_info']['oracle_cluster']['true_groups'] = datasets.gauss_groups[3]
 

@@ -8,7 +8,7 @@ import numpy as np
 import os
 import os.path as osp
 
-from model.array_in_list import is_array_in_list
+from model.utils import is_array_in_list
 
 
 class FeatureSelector(nn.Module):
@@ -64,7 +64,15 @@ class EnsembleSTG(nn.Module):
     Ensemble STG implementation.
 
     An ensemble of STGs, which concatenate all their outputs to form one large latent
-    representation.
+    representation. Can be used as single stg.
+
+    Args (as dict):
+        num_stg: number of stgs in ensemble
+        lam: lambda parameter, makes number of features smaller
+        loss_func: nn loss function
+        in_dim: input dimension
+        h_dim: hidden dim
+        out_dim: output dimension
     """
     def __init__(self, config_dict):
         super(EnsembleSTG, self).__init__()

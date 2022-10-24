@@ -27,7 +27,7 @@ mnist_config = {
                 'batchsize': 500,
                 'num_epochs': 50,
                 'loss_func': nn.CrossEntropyLoss(),
-                'val_metric': metrics.auroc,
+                'val_metric': metrics.accuracy,
                 'in_dim': 28*28,
                 'h_dim': 256,
                 'out_dim': 10,
