@@ -71,7 +71,7 @@ $ python -m experiments.run_evaluation --experiment chem1 --model random_forests
 $ python -m experiments.run_evaluation --experiment chem2 --model oracle
 ```
 
-For Group Lasso and Concrete Autoencoder we have included Python Notebooks in the experiments/notebooks/ folder to be run. Included are also notebooks for the MNIST evaluation.
+For Group Lasso and Concrete Autoencoder we have included Python Notebooks in the experiments/notebooks/ folder to be run. NOTE: The chemistry data must be moved to a folder that these notebooks can access. Included are also notebooks for the MNIST evaluation.
 
 ### Running CompFS on your Data
 We have included a notebook in the home directory, 'example.ipynb', which demonstrates CompFS on Syn1. Here the data can be easily be replaced with NumPy arrays of custom data, and the hyperparameters of CompFS can be set.
