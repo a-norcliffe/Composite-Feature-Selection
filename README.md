@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/a-norcliffe/Composite-Feature-Selection/blob/master/LICENSE)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
-Official code for the paper [**Composite Feature Selection using Deep Ensembles**](https://github.com/a-norcliffe/Composite-Feature-Selection)
+Official code for the NeurIPS 2022 paper [**Composite Feature Selection using Deep Ensembles**](https://github.com/a-norcliffe/Composite-Feature-Selection)
 (
 [Fergus Imrie](https://fimrie.github.io/),
 [Alexander Norcliffe](https://twitter.com/alexnorcliffe98), 
@@ -54,7 +54,7 @@ The datasets have not been included here to save space. Download each dataset an
 - Metabric Data: [Link](https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric), store data in *datasets/metabric_data/*
 
 ### Running the Experiments
-Experiments can be run from the command line, with the arguments: experiment_no, experiment, model, for example:
+Experiments can be run from the command line (from the home directory), with the arguments: experiment_no, experiment, model, for example:
 
 ```
 $ python -m experiments.run_experiment --experiment_no 1 --experiment syn1 --model compfs1
@@ -63,7 +63,7 @@ $ python -m experiments.run_experiment --experiment_no 2 --experiment metabric -
 $ python -m experiments.run_experiment --experiment_no 1 --experiment mnist --model stg
 ```
 
-Following that, the standard evaluation to produce the tables from the paper may be carried out from the command line, with the arguments: experiment, model, for example:
+Following that, the standard evaluation to produce the tables from the paper may be carried out from the command line (from the home directory), with the arguments: experiment, model, for example:
 
 ```
 $ python -m experiments.run_evaluation --experiment syn4 --model lasso
