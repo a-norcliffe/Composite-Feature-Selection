@@ -54,10 +54,27 @@ The datasets have not been included here to save space. Download each dataset an
 - Metabric Data: [Link](https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric), store data in *datasets/metabric_data/*
 
 ### Running the Experiments
-To be written.
+Experiments can be run from the command line, with the arguments: experiment_no, experiment, model, for example:
+
+```
+$ python -m experiments.run_experiment --experiment_no 1 --experiment syn1 --model compfs1
+$ python -m experiments.run_experiment --experiment_no 6 --experiment chem3 --model ensemble_stg
+$ python -m experiments.run_experiment --experiment_no 2 --experiment metabric --model compfs5
+$ python -m experiments.run_experiment --experiment_no 1 --experiment mnist --model stg
+```
+
+Following that, the standard evaluation to produce the tables from the paper may be carried out from the command line, with the arguments: experiment, model, for example:
+
+```
+$ python -m experiments.run_evaluation --experiment syn4 --model lasso
+$ python -m experiments.run_evaluation --experiment chem1 --model random_forests
+$ python -m experiments.run_evaluation --experiment chem2 --model oracle
+```
+
+For Group Lasso and Concrete Autoencoder we have included Python Notebooks in the experiments/notebooks/ folder to be run. Included are also notebooks for the MNIST evaluation.
 
 ### Running CompFS on your Data
-To be written.
+We have included a notebook in the home directory, 'example.ipynb', which demonstrates CompFS on Syn1. Here the data can be easily be replaced with NumPy arrays of custom data, and the hyperparameters of CompFS can be set.
 
 
 ## Citation
