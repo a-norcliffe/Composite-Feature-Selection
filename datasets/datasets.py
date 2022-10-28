@@ -16,7 +16,7 @@ import itertools as it
 from datasets import chem_featuriser
 
 
-class NumpyDataSet(Dataset):
+class NumpyDataset(Dataset):
     """
     Numpy dataset class, converts numpy data to torch dataset.
 
