@@ -48,7 +48,7 @@ default_config = {
                 'lr': 0.003,
                 'lr_decay': 0.99,
                 'batchsize': 100,
-                'num_epochs': 20,
+                'num_epochs': 35,
                 'loss_func': nn.CrossEntropyLoss(),
                 'val_metric': metrics.accuracy,
                 'in_dim': 500,
@@ -86,7 +86,7 @@ default_config = {
                 'lr': 0.001,
                 'lr_decay': 1.00,
                 'batchsize': 100,
-                'num_epochs': 200,
+                'num_epochs': 150,
                 'loss_func': nn.CrossEntropyLoss(),
                 'val_metric': metrics.accuracy,
                 'in_dim': 500,
@@ -104,7 +104,7 @@ default_config = {
                 'lr': 0.001,
                 'lr_decay': 1.00,
                 'batchsize': 250,
-                'num_epochs': 400,
+                'num_epochs': 250,
                 'loss_func': nn.CrossEntropyLoss(),
                 'val_metric': metrics.accuracy,
                 'in_dim': 500,
@@ -112,7 +112,7 @@ default_config = {
                 'out_dim': 2,
                 'sigma': 0.5,
                 'num_stg': 1,
-                'lam': 0.1
+                'lam': 0.2
                 }
             },
         'oracle': {
@@ -155,13 +155,11 @@ syn1_config = copy.deepcopy(default_config)
 
 syn2_config = copy.deepcopy(default_config)
 syn2_config['data_info']['data_config']['rule'] = 2
-syn2_config['model_info']['compfs1']['model_config']['beta_s'] = 0.025
 syn2_config['model_info']['oracle']['true_groups'] = datasets.gauss_groups[2]
 syn2_config['model_info']['oracle_cluster']['true_groups'] = datasets.gauss_groups[2]
 
 syn3_config = copy.deepcopy(default_config)
 syn3_config['data_info']['data_config']['rule'] = 3
-syn3_config['model_info']['compfs1']['model_config']['beta_s'] = 0.025
 syn3_config['model_info']['oracle']['true_groups'] = datasets.gauss_groups[3]
 syn3_config['model_info']['oracle_cluster']['true_groups'] = datasets.gauss_groups[3]
 

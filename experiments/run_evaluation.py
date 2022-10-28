@@ -65,6 +65,7 @@ if __name__ == "__main__":
     performance = np.array(performance)
     ntruegroups = np.array(ntruegroups)
 
+    print('{} performance on {}:'.format(args.model, args.experiment))
     print('Gim: {:.5f} +- {:.5f}'.format(np.mean(gsim), np.std(gsim)))
     print('TPR: {:.5f} +- {:.5f}'.format(np.mean(tpr), np.std(tpr)))
     print('FDR: {:.5f} +- {:.5f}'.format(np.mean(fdr), np.std(fdr)))

@@ -9,6 +9,7 @@ import os.path as osp
 
 from model.utils import is_array_in_list
 
+
 class RandomForests:
     '''
     Implementation of group feature selection using random forests.
@@ -38,7 +39,7 @@ class RandomForests:
         # Loop over best trees.
         for tree_idx in np.array(perfs).argsort()[::-1][:self.n_top_trees]:
             # Get feature importances for tree.
-            tree = self.rf.estimators_[tree_idx]
+            tree = self.get_tree(self.rf.estimators_[tree_idx])
             sorted_idx = tree.feature_importances_.argsort()[::-1][:self.max_idx]
             tree_imp = tree.feature_importances_[sorted_idx]
             # Get set of key features.
@@ -48,7 +49,7 @@ class RandomForests:
                     group.append(sorted_idx[idx])
             # Add group to groups.
             group = np.sort(np.array(group))
-            if not is_array_in_list(group, self.groups):
+            if (not is_array_in_list(group, self.groups)) and (len(group)>0):
                 self.groups.append(group)
 
     def predict(self, x):
@@ -64,10 +65,16 @@ class RandomForests:
         y = np.stack(y, axis=0)
         return X, y
 
+    def get_tree(self, tree):
+        return tree
+
+    def get_tree_prediction(self, tree, x):
+        return tree.predict_proba(x)[:, 1]
+
     def test_trees(self, X_val, y_val):
         perfs = []
         for tree in self.rf.estimators_:
-            tree_preds = tree.predict_proba(X_val)[:, 1]
+            tree_preds = self.get_tree_prediction(self.get_tree(tree), X_val)
             perfs.append(roc_auc_score(y_val, tree_preds))
         return perfs
 
@@ -94,32 +101,8 @@ class GBDT(RandomForests):
         super().__init__(config_dict)
         self.rf = GradientBoostingClassifier(n_estimators=config_dict['n_estimators'], max_depth=config_dict['max_depth'])
 
-    def test_trees(self, X_val, y_val):
-        perfs = []
-        for tree in self.rf.estimators_:
-            tree_preds = tree[0].predict(X_val)
-            perfs.append(roc_auc_score(y_val, tree_preds))
-        return perfs
+    def get_tree(self, tree):
+        return tree[0]
 
-    def train(self, X_train, y_train, X_val, y_val):
-        print('\nTraining Model')
-        self.rf.fit(X_train, y_train)
-        print('Training Complete')
-        self.groups = []
-        # Get performance of trees.
-        perfs = self.test_trees(X_val, y_val)
-        # Loop over best trees.
-        for tree_idx in np.array(perfs).argsort()[::-1][:self.n_top_trees]:
-            # Get feature importances for tree.
-            tree = self.rf.estimators_[tree_idx][0]
-            sorted_idx = tree.feature_importances_.argsort()[::-1][:self.max_idx]
-            tree_imp = tree.feature_importances_[sorted_idx]
-            # Get set of key features.
-            group = []
-            for idx, imp in enumerate(tree_imp):
-                if imp > self.threshold:
-                    group.append(sorted_idx[idx])
-            # Add group to groups.
-            group = np.sort(np.array(group))
-            if not is_array_in_list(group, self.groups):
-                self.groups.append(group)
+    def get_tree_prediction(self, tree, x):
+        return tree.predict(x)

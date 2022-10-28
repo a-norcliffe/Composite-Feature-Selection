@@ -166,6 +166,11 @@ class Oracle(BaseModel):
     def get_groups(self):
         return [self.features]
 
+    def save_evaluation_info(self, val_data, folder):
+        full_model_performance = -1.0
+        np.save(osp.join(folder, 'full_model_performance.npy'), np.array([full_model_performance]))
+        print('\n\nPerformance:\nFull Model Test Metric: {:.3f}'.format(full_model_performance))
+        
 
 class OracleCluster(BaseModel):
 
@@ -185,6 +190,11 @@ class OracleCluster(BaseModel):
     def get_groups(self):
         groups = [[] for _ in range(self.num_clusters)]
         for idx, l in enumerate(self.agglo.labels_):
-            groups[l].append(idx)
+            groups[l].append(self.features[idx])
         return groups
+
+    def save_evaluation_info(self, val_data, folder):
+        full_model_performance = -1.0
+        np.save(osp.join(folder, 'full_model_performance.npy'), np.array([full_model_performance]))
+        print('\n\nPerformance:\nFull Model Test Metric: {:.3f}'.format(full_model_performance))
 

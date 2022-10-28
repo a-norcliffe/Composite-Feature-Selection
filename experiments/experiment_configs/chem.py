@@ -47,7 +47,7 @@ default_config = {
                 'lr': 0.003,
                 'lr_decay': 0.99,
                 'batchsize': 20,
-                'num_epochs': 20,
+                'num_epochs': 35,
                 'loss_func': nn.CrossEntropyLoss(),
                 'val_metric': metrics.accuracy,
                 'in_dim': 84,
@@ -100,7 +100,7 @@ default_config = {
             'base': TorchModel,
             'model': EnsembleSTG,
             'model_config': {
-                'lr': 0.001,
+                'lr': 0.01,
                 'lr_decay': 1.00,
                 'batchsize': 250,
                 'num_epochs': 400,
@@ -111,7 +111,7 @@ default_config = {
                 'out_dim': 2,
                 'sigma': 0.5,
                 'num_stg': 1,
-                'lam': 0.1
+                'lam': 15.0
                 }
             },
         'oracle': {
@@ -164,4 +164,7 @@ chem3_config['data_info']['data_config']['rule'] = 13
 chem3_config['model_info']['oracle']['true_groups'] = datasets.chem_data_groups[13]
 chem3_config['model_info']['oracle_cluster']['true_groups'] = datasets.chem_data_groups[13]
 chem3_config['model_info']['lasso']['model_config']['beta_s'] = 0.2
-chem2_config['model_info']['compfs1']['model_config']['beta_s'] = 0.7
+chem3_config['model_info']['compfs1']['model_config']['beta_s'] = 0.7
+chem3_config['model_info']['stg']['model_config']['lam'] = 23.0
+chem3_config['model_info']['stg']['model_config']['batchsize'] = 500
+chem3_config['model_info']['stg']['model_config']['num_epochs'] = 150
