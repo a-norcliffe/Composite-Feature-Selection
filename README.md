@@ -60,7 +60,7 @@ Experiments can be run from the command line (from the home directory), with the
 $ python -m experiments.run_experiment --experiment_no 1 --experiment syn1 --model compfs1
 $ python -m experiments.run_experiment --experiment_no 6 --experiment chem3 --model ensemble_stg
 $ python -m experiments.run_experiment --experiment_no 2 --experiment metabric --model compfs5
-$ python -m experiments.run_experiment --experiment_no 1 --experiment mnist --model stg
+$ python -m experiments.run_experiment --experiment_no 1 --experiment mnist --model gbdt
 ```
 
 Following that, the standard evaluation to produce the tables from the paper may be carried out from the command line (from the home directory), with the arguments: experiment, model, for example:
@@ -71,10 +71,12 @@ $ python -m experiments.run_evaluation --experiment chem1 --model random_forests
 $ python -m experiments.run_evaluation --experiment chem2 --model oracle
 ```
 
-For Group Lasso and Concrete Autoencoder we have included Python Notebooks in the experiments/notebooks/ folder to be run. Included are also notebooks for the MNIST evaluation.
+For Group Lasso, STG and Concrete Autoencoder we have included Python Notebooks in the experiments/notebooks/ folder to be run. Included are also notebooks for the MNIST evaluation. STG may also be run from the command line using the
+same commands as above, with model command line argument `stg`, however this is an adapted Ensemble STG with one STG so the hyperparameters have been adjusted accordingly to obtain the same positive results. 
 
 ### Running CompFS on your Data
-We have included a notebook in the home directory, 'example.ipynb', which demonstrates CompFS on Syn1. Here the data can be easily be replaced with NumPy arrays of custom data, and the hyperparameters of CompFS can be set.
+We have included a notebook in the home directory, 'example.ipynb', which demonstrates CompFS on Syn1. Here the data can be easily be replaced with NumPy arrays of custom data, and the hyperparameters of CompFS can be set. The notebook
+'standalone_example.ipynb' is the same notebook but with code copied directly rather than imported so that it can be used on without requiring imports from the repo.
 
 
 ## Citation
