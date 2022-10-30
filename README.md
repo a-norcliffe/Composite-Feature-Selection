@@ -71,12 +71,8 @@ $ python -m experiments.run_evaluation --experiment chem1 --model random_forests
 $ python -m experiments.run_evaluation --experiment chem2 --model oracle
 ```
 
-<<<<<<< HEAD
 For Group Lasso, STG and Concrete Autoencoder we have included Python Notebooks in the experiments/notebooks/ folder to be run. Included are also notebooks for the MNIST evaluation. STG may also be run from the command line using the
-same commands as above, with model command line argument `stg`, however this is an adapted Ensemble STG with one STG so the hyperparameters have been adjusted accordingly to obtain the same positive results. 
-=======
-For Group Lasso and Concrete Autoencoder we have included Python Notebooks in the experiments/notebooks/ folder to be run. NOTE: The chemistry data must be moved to a folder that these notebooks can access. Included are also notebooks for the MNIST evaluation.
->>>>>>> e379b9f09a6c3ccd371b1b660c0b2d16201d6ed8
+same commands as above, with model command line argument `stg`, however this is an adapted Ensemble STG with one STG so the hyperparameters have been adjusted accordingly to obtain the same positive results.
 
 ### Running CompFS on your Data
 We have included a notebook in the home directory, 'example.ipynb', which demonstrates CompFS on Syn1. Here the data can be easily be replaced with NumPy arrays of custom data, and the hyperparameters of CompFS can be set. The notebook
