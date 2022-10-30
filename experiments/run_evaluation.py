@@ -24,7 +24,7 @@ parser.add_argument('--experiment', type=str, choices=['syn1',
                                                        'chem3', 
                                                        'metabric', 
                                                        'mnist'], default='syn1')
-parser.add_argument('--model', type=str, choices=['compfs5',
+parser.add_argument('--model', type=str, choices=['compfs',
                                                   'compfs1',
                                                   'oracle',
                                                   'oracle_cluster',
@@ -32,7 +32,7 @@ parser.add_argument('--model', type=str, choices=['compfs5',
                                                   'stg',
                                                   'ensemble_stg',
                                                   'random_forests',
-                                                  'gbdt'], default='compfs5')
+                                                  'gbdt'], default='compfs')
 args = parser.parse_args()
 
 

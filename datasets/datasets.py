@@ -346,7 +346,7 @@ class MNIST(Dataset):
         train: whether we are making a training set or not
     """
     def __init__(self, config_dict):
-        train_data = visiondatasets.MNIST(root='', train=config_dict['train'], transform=transforms.transforms.ToTensor(), download=True)
+        data = visiondatasets.MNIST(root='', train=config_dict['train'], transform=transforms.transforms.ToTensor(), download=True)
         self.num_data = len(data)
         self.data = []
         self.x_bar = 0

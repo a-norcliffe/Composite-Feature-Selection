@@ -18,7 +18,7 @@ mnist_config = {
             }
         },
     'model_info': {
-        'compfs5': {
+        'compfs': {
             'base': TorchModel,
             'model': CompFS,
             'model_config': {

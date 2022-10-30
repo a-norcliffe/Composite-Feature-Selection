@@ -59,7 +59,7 @@ Experiments can be run from the command line (from the home directory), with the
 ```
 $ python -m experiments.run_experiment --experiment_no 1 --experiment syn1 --model compfs1
 $ python -m experiments.run_experiment --experiment_no 6 --experiment chem3 --model ensemble_stg
-$ python -m experiments.run_experiment --experiment_no 2 --experiment metabric --model compfs5
+$ python -m experiments.run_experiment --experiment_no 2 --experiment metabric --model compfs
 $ python -m experiments.run_experiment --experiment_no 1 --experiment mnist --model gbdt
 ```
 

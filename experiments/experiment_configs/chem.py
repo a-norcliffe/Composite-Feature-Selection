@@ -18,7 +18,7 @@ default_config = {
             }
         },
     'model_info': {
-        'compfs5': {
+        'compfs': {
             'base': TorchModel,
             'model': CompFS,
             'model_config': {
@@ -96,6 +96,9 @@ default_config = {
                 'lam': 4.0
                 }
             },
+        # STG was originally run in a notebook with the authors implementation, this alternative way to run
+        # STG allows us to adapt our implementation of Ensemble STG, but they hyperparameters are correspondingly
+        # edited as well to aquire the same (positive) results as reported in the paper.
         'stg': {
             'base': TorchModel,
             'model': EnsembleSTG,
@@ -156,7 +159,7 @@ chem2_config = copy.deepcopy(default_config)
 chem2_config['data_info']['data_config']['rule'] = 10
 chem2_config['model_info']['oracle']['true_groups'] = datasets.chem_data_groups[10]
 chem2_config['model_info']['oracle_cluster']['true_groups'] = datasets.chem_data_groups[10]
-chem2_config['model_info']['compfs5']['model_config']['beta_s'] = 3.4
+chem2_config['model_info']['compfs']['model_config']['beta_s'] = 3.4
 chem2_config['model_info']['lasso']['model_config']['beta_s'] = 0.2
 
 chem3_config = copy.deepcopy(default_config)

@@ -19,7 +19,7 @@ default_config = {
             }
         },
     'model_info': {
-        'compfs5': {
+        'compfs': {
             'base': TorchModel,
             'model': CompFS,
             'model_config': {
@@ -97,6 +97,9 @@ default_config = {
                 'lam': 0.1
                 }
             },
+        # STG was originally run in a notebook with the authors implementation, this alternative way to run
+        # STG allows us to adapt our implementation of Ensemble STG, but they hyperparameters are correspondingly
+        # edited as well to aquire the same (positive) results as reported in the paper.
         'stg': {
             'base': TorchModel,
             'model': EnsembleSTG,

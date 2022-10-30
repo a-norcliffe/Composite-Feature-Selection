@@ -35,7 +35,7 @@ def mse(x, y):
 
 def auroc(x, y):
    # Area under roc curve.
-   return roc_auc_score(y.detach().cpu().numpy(), torch.softmax(x, dim=-1).detach().cpu().numpy())
+   return roc_auc_score(y.detach().cpu().numpy(), torch.softmax(x, dim=-1).detach().cpu().numpy()[:, 1])
 
 
 def lasso_auroc(x, y):
