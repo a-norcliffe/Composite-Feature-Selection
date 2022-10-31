@@ -5,26 +5,26 @@
 Official code for the NeurIPS 2022 paper [**Composite Feature Selection using Deep Ensembles**](https://github.com/a-norcliffe/Composite-Feature-Selection)
 (
 [Fergus Imrie](https://fimrie.github.io/),
-[Alexander Norcliffe](https://twitter.com/alexnorcliffe98), 
+[Alexander Norcliffe](https://twitter.com/alexnorcliffe98),
 [Pietro Liò](https://www.cl.cam.ac.uk/~pl219/),
 [Mihaela van der Schaar](https://www.vanderschaar-lab.com/prof-mihaela-van-der-schaar/)
 )
 
 Current feature selection methods only return a list of predictive features. However, features often don't act alone, but with each other. Take XOR as a simple example, feature 1 *literally* provides
-no information without also knowing the value of feature 2 and vice versa. This work aims to solve the problem of **Composite Feature Selection**, where we find the groups of features that act together. 
+no information without also knowing the value of feature 2 and vice versa. This work aims to solve the problem of **Composite Feature Selection**, where we find the groups of features that act together.
 
 ![Deep Graph Mapper](figures_for_readme/compfs_model_figure.png)
 *Our model CompFS. We use an ensemble of group selection models to discover
 composite features and an aggregate predictor to combine these features when issuing predictions.*
 
 
-## Abstract 
+## Abstract
 
-In many real world problems, features do not act alone but in combination with each other. 
-For example, in genomics, diseases might not be caused by any single mutation but require the presence of multiple mutations. 
-Prior work on feature selection either seeks to identify individual features or can only determine relevant groups from a predefined set. 
-We investigate the problem of discovering groups of predictive features without predefined grouping. 
-To do so, we define predictive groups in terms of linear and non-linear interactions between features. 
+In many real world problems, features do not act alone but in combination with each other.
+For example, in genomics, diseases might not be caused by any single mutation but require the presence of multiple mutations.
+Prior work on feature selection either seeks to identify individual features or can only determine relevant groups from a predefined set.
+We investigate the problem of discovering groups of predictive features without predefined grouping.
+To do so, we define predictive groups in terms of linear and non-linear interactions between features.
 We introduce a novel deep learning architecture that uses an ensemble of feature selection models to find predictive groups, without requiring candidate groups to be provided.
 The selected groups are sparse and exhibit minimum overlap.
 Furthermore, we propose a new metric to measure similarity between discovered groups and the ground truth.
@@ -44,13 +44,25 @@ We used `python 3.7` for this project. To setup the virtual environment and nece
 ```bash
 $ conda create --name compfs python=3.7
 $ conda activate compfs
-$ pip install -r requirements.txt
 ```
-`PyTorch 1.4.0` is also required, which can be installed from the [official website](https://pytorch.org/).
+
+The library can be installed from PyPI using
+```bash
+pip install compfs
+```
+or from source, using
+```bash
+pip install .
+```
+
+For running the tests and experiments, the dependencies can be installed using
+```bash
+pip install .[testing]
+```
 
 ### Datasets
 The datasets have not been included here to save space. Download each dataset and place in the following folders:
-- Chemisty Data: [Link](https://github.com/google-research/graph-attribution/raw/main/data/all_16_logics_train_and_test.zip), store data in *datasets/chem_data/* 
+- Chemisty Data: [Link](https://github.com/google-research/graph-attribution/raw/main/data/all_16_logics_train_and_test.zip), store data in *datasets/chem_data/*
 (copy and paste from the 'all_16_logics_train_and_test' folder)
 - Metabric Data: [Link](https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric), store data in *datasets/metabric_data/*
 (copy and paste from the 'archive' folder)
@@ -97,4 +109,4 @@ If our paper or code helped you in your own research, please cite our work as:
 We thank the anonymous reviewers for their comments and suggestions for this paper.
 At the time of this work, Fergus Imrie and Mihaela van der Schaar are supported by the National Science Foundation (NSF, grant number 1722516).
 Mihaela van der Schaar is additionally supported by the Office of Naval Research (ONR). Alexander Norcliffe is supported by a GlaxoSmithKline grant.
-We would also like to thank Bogdan Cebere and Evgeny Saveliev for reviewing this code. 
+We would also like to thank Bogdan Cebere and Evgeny Saveliev for reviewing this code.
