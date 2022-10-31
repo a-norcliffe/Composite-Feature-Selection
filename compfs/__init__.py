@@ -1,4 +1,3 @@
-# data_iq relative
 # compfs relative
 from .compfs import CompFS
 
