@@ -1,46 +1,52 @@
 """Implementations of Random Forests and GBDT."""
 
-import numpy as np
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.metrics import roc_auc_score
-
+# stdlib
 import os
 import os.path as osp
 
-from model.utils import is_array_in_list
+import numpy as np
+from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
+from sklearn.metrics import roc_auc_score
+
+# third party
+from compfs.utils import is_array_in_list
 
 
 class RandomForests:
-    '''
+    """
     Implementation of group feature selection using random forests.
-    
+
     Args (as dict):
         n_estimators: how many trees in the ensemble
         random_state: random seed
         max_depth: maximum depth of decision tree
         n_top_trees: number of trees to use for group feature selection
         max_idx: max number of features to consider
-        threshold: feature importance threshold 
-    '''
+        threshold: feature importance threshold
+    """
+
     def __init__(self, config_dict):
         super(RandomForests, self).__init__()
-        self.rf = RandomForestClassifier(n_estimators=config_dict['n_estimators'], max_depth=config_dict['max_depth'])
-        self.n_top_trees = config_dict['n_top_trees']
-        self.max_idx = config_dict['max_idx']
-        self.threshold = config_dict['threshold']
+        self.rf = RandomForestClassifier(
+            n_estimators=config_dict["n_estimators"],
+            max_depth=config_dict["max_depth"],
+        )
+        self.n_top_trees = config_dict["n_top_trees"]
+        self.max_idx = config_dict["max_idx"]
+        self.threshold = config_dict["threshold"]
 
     def train(self, X_train, y_train, X_val, y_val):
-        print('\nTraining Model')
+        print("\nTraining Model")
         self.rf.fit(X_train, y_train)
-        print('Training Complete')
+        print("Training Complete")
         self.groups = []
         # Get performance of trees.
         perfs = self.test_trees(X_val, y_val)
         # Loop over best trees.
-        for tree_idx in np.array(perfs).argsort()[::-1][:self.n_top_trees]:
+        for tree_idx in np.array(perfs).argsort()[::-1][: self.n_top_trees]:
             # Get feature importances for tree.
             tree = self.get_tree(self.rf.estimators_[tree_idx])
-            sorted_idx = tree.feature_importances_.argsort()[::-1][:self.max_idx]
+            sorted_idx = tree.feature_importances_.argsort()[::-1][: self.max_idx]
             tree_imp = tree.feature_importances_[sorted_idx]
             # Get set of key features.
             group = []
@@ -49,7 +55,7 @@ class RandomForests:
                     group.append(sorted_idx[idx])
             # Add group to groups.
             group = np.sort(np.array(group))
-            if (not is_array_in_list(group, self.groups)) and (len(group)>0):
+            if (not is_array_in_list(group, self.groups)) and (len(group) > 0):
                 self.groups.append(group)
 
     def predict(self, x):
@@ -81,25 +87,36 @@ class RandomForests:
     def save_evaluation_info(self, x, y, folder, val_metric):
         output = self.predict(x)
         full_model_performance = val_metric(output, y)
-        np.save(osp.join(folder, 'full_model_performance.npy'), np.array([full_model_performance]))
-        print('\n\nPerformance:\nFull Model Test Metric: {:.3f}'.format(full_model_performance))
+        np.save(
+            osp.join(folder, "full_model_performance.npy"),
+            np.array([full_model_performance]),
+        )
+        print(
+            "\n\nPerformance:\nFull Model Test Metric: {:.3f}".format(
+                full_model_performance,
+            ),
+        )
 
 
 class GBDT(RandomForests):
-    '''
+    """
     Implementation of group feature selection using gradient boosted decision trees.
-    
+
     Args (as dict):
         n_estimators: how many trees in the ensemble
         random_state: random seed
         max_depth: maximum depth of decision tree
         n_top_trees: number of trees to use for group feature selection
         max_idx: max number of features to consider
-        threshold: feature importance threshold 
-    '''
+        threshold: feature importance threshold
+    """
+
     def __init__(self, config_dict):
         super().__init__(config_dict)
-        self.rf = GradientBoostingClassifier(n_estimators=config_dict['n_estimators'], max_depth=config_dict['max_depth'])
+        self.rf = GradientBoostingClassifier(
+            n_estimators=config_dict["n_estimators"],
+            max_depth=config_dict["max_depth"],
+        )
 
     def get_tree(self, tree):
         return tree[0]
