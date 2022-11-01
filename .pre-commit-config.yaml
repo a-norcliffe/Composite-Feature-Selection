@@ -27,3 +27,11 @@ repos:
     hooks:
     -   id: add-trailing-comma
         args: [--py36-plus]
+- repo: https://gitlab.com/pycqa/flake8
+  rev: 3.9.1
+  hooks:
+  - id: flake8
+    args: [
+        "--max-line-length=440",
+        "--extend-ignore=E203,W503"
+    ]

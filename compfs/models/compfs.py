@@ -1,8 +1,7 @@
 """Implementation of CompFS."""
 
 # stdlib
-import os
-import os.path as osp
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -170,11 +169,11 @@ class CompFS(nn.Module):
         x_b = self.x_bar.repeat(len(x), 1).to(x.device)
         total = 0
         individuals = torch.tensor([]).to(x.device)
-        for l in self.learners:
-            hidden = l(x, x_b).unsqueeze(0)
-            total += l.fc_aggregate(hidden)
+        for learner in self.learners:
+            hidden = learner(x, x_b).unsqueeze(0)
+            total += learner.fc_aggregate(hidden)
             individuals = torch.cat(
-                [individuals, l.fc_individual(hidden.detach())],
+                [individuals, learner.fc_individual(hidden.detach())],
                 dim=0,
             )
         out = torch.cat(
@@ -187,8 +186,8 @@ class CompFS(nn.Module):
         # Test the ensemble.
         x_b = self.x_bar.repeat(len(x), 1).to(x.device)
         out = 0
-        for l in self.learners:
-            out += l.fc_aggregate(l(x, x_b, test=True))
+        for learner in self.learners:
+            out += learner.fc_aggregate(learner(x, x_b, test=True))
         return out
 
     def preprocess(self, data):
@@ -225,15 +224,15 @@ class CompFS(nn.Module):
     def count_features(self):
         # Return list of number of features in each group.
         out = []
-        for l in self.learners:
-            out.append(l.count_features())
+        for learner in self.learners:
+            out.append(learner.count_features())
         return out
 
     def get_overlap(self):
         # Count how many features overlap, and where they are.
         overlap = 0
-        for l in self.learners:
-            overlap += l.gate.make_m()
+        for learner in self.learners:
+            overlap += learner.gate.make_m()
         overlap = overlap > 1
         noverlap = torch.sum(overlap).item()
         ids = torch.where(overlap)
@@ -242,8 +241,8 @@ class CompFS(nn.Module):
     def get_groups(self):
         # Return a list of the groups as numpy arrays, which are not empty and unique.
         groups = []
-        for l in self.learners:
-            g = l.get_group().detach().cpu().numpy()
+        for learner in self.learners:
+            g = learner.get_group().detach().cpu().numpy()
             if (len(g) != 0) and (not is_array_in_list(g, groups)):
                 groups.append(g)
         return groups
@@ -251,14 +250,14 @@ class CompFS(nn.Module):
     def set_threshold_func(self, new_func):
         # After training we can change how we threshold the scores of each learner. By giving
         # the ensemble a new thresholding function.
-        for l in self.learners:
-            l.gate.threshold_func = new_func
+        for learner in self.learners:
+            learner.gate.threshold_func = new_func
 
     def save_evaluation_info(self, x, y, folder, val_metric):
         output = self.predict(x)
         full_model_performance = val_metric(output, y)
         np.save(
-            osp.join(folder, "full_model_performance.npy"),
+            Path(folder) / "full_model_performance.npy",
             np.array([full_model_performance]),
         )
         print(
@@ -275,7 +274,7 @@ class CompFS(nn.Module):
             )
             individual_performance = val_metric(output, y)
             np.save(
-                osp.join(folder, "learner_" + str(i + 1) + "_performance.npy"),
+                Path(folder) / f"learner_{i + 1}_performance.npy",
                 np.array([individual_performance]),
             )
             print(
@@ -287,7 +286,7 @@ class CompFS(nn.Module):
         for i in range(self.nlearners):
             individual_importance = self.learners[i].get_importance()
             np.save(
-                osp.join(folder, "learner_" + str(i + 1) + "_importance.npy"),
+                Path(folder) / f"learner_{i + 1}_importance.npy",
                 np.array([individual_importance]),
             )
-            print("Group: {}, Importance: {:.3f}".format(i + 1, individual_importance))
+            print(f"Group: {i + 1}, Importance: {individual_importance}")

@@ -2,15 +2,13 @@
 
 # stdlib
 from functools import reduce
-import os
-import os.path as osp
+from pathlib import Path
 
 # third party
 import numpy as np
-from sklearn import cluster
 import torch
-import torch.nn as nn
 import torch.optim as optim
+from sklearn import cluster
 from torch.utils.data import DataLoader
 
 
@@ -121,33 +119,36 @@ class TorchModel(BaseModel):
         return metric / len(val_loader)
 
     def save(self, folder):
+        folder = Path(folder)
         print("\nSaving Model")
-        torch.save(self.model.state_dict(), osp.join(folder, "trained_model.pth"))
+        torch.save(self.model.state_dict(), folder / "trained_model.pth")
         print("\nSaving Optimizer")
-        torch.save(self.optimizer.state_dict(), osp.join(folder, "optimizer.pth"))
+        torch.save(self.optimizer.state_dict(), folder / "optimizer.pth")
 
     def load(self, folder):
+        folder = Path(folder)
         print("\nLoading Model")
-        self.model.load_state_dict(torch.load(osp.join(folder, "trained_model.pth")))
+        self.model.load_state_dict(torch.load(folder / "trained_model.pth"))
         print("\nLoading Optimizer")
-        self.optimizer.load_state_dict(torch.load(osp.join(folder, "optimizer.pth")))
+        self.optimizer.load_state_dict(torch.load(folder / "optimizer.pth"))
 
     def save_training_stats(self, folder):
+        folder = Path(folder)
         # Saves training stats from the trainer.
         np.save(
-            osp.join(folder, "epoch_loss_history.npy"),
+            folder / "epoch_loss_history.npy",
             np.array(self.epoch_loss_history),
         )
         np.save(
-            osp.join(folder, "epoch_val_history.npy"),
+            folder / "epoch_val_history.npy",
             np.array(self.epoch_val_history),
         )
         np.save(
-            osp.join(folder, "epoch_overlap_history.npy"),
+            folder / "epoch_overlap_history.npy",
             np.array(self.epoch_overlap_history),
         )
         np.save(
-            osp.join(folder, "epoch_n_features_history.npy"),
+            folder / "epoch_n_features_history.npy",
             np.array(self.epoch_n_features_history),
         )
 
@@ -191,9 +192,10 @@ class Oracle(BaseModel):
         return [self.features]
 
     def save_evaluation_info(self, val_data, folder):
+        folder = Path(folder)
         full_model_performance = -1.0
         np.save(
-            osp.join(folder, "full_model_performance.npy"),
+            folder / "full_model_performance.npy",
             np.array([full_model_performance]),
         )
         print(
@@ -224,9 +226,10 @@ class OracleCluster(BaseModel):
         return groups
 
     def save_evaluation_info(self, val_data, folder):
+        folder = Path(folder)
         full_model_performance = -1.0
         np.save(
-            osp.join(folder, "full_model_performance.npy"),
+            folder / "full_model_performance.npy",
             np.array([full_model_performance]),
         )
         print(

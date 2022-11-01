@@ -1,8 +1,7 @@
 """Implementations of Random Forests and GBDT."""
 
 # stdlib
-import os
-import os.path as osp
+from pathlib import Path
 
 import numpy as np
 from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
@@ -88,7 +87,7 @@ class RandomForests:
         output = self.predict(x)
         full_model_performance = val_metric(output, y)
         np.save(
-            osp.join(folder, "full_model_performance.npy"),
+            Path(folder) / "full_model_performance.npy",
             np.array([full_model_performance]),
         )
         print(

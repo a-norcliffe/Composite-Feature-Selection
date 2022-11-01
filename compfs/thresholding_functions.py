@@ -4,12 +4,12 @@
 import torch
 
 
-def make_lambda_threshold(l):
+def make_lambda_threshold(lmd):
     # If the value is above a certain value l (lambda) return 1, otherwise 0.
-    l = float(l)
+    lmd = float(lmd)
 
     def l_func(p):
-        return p >= torch.full_like(p, l)
+        return p >= torch.full_like(p, lmd)
 
     return l_func
 
