@@ -3,13 +3,8 @@
 import argparse
 import os
 import os.path as osp
-import random
 
-import matplotlib.pyplot as plt
 import numpy as np
-import torch
-
-from compfs.metrics import gsim, tpr_fdr
 
 # Load in arguments.
 parser = argparse.ArgumentParser()

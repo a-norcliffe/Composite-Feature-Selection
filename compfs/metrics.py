@@ -5,8 +5,8 @@ from functools import reduce
 
 # third party
 import numpy as np
-from sklearn.metrics import accuracy_score, roc_auc_score
 import torch
+from sklearn.metrics import accuracy_score, roc_auc_score
 
 
 def accuracy(x, y):
@@ -45,7 +45,10 @@ def auroc(x, y):
 
 def lasso_auroc(x, y):
     # Area under roc curve for Lasso.
-    a = roc_auc_score(y.detach().cpu().numpy(), torch.sigmoid(x).detach().cpu().numpy())
+    return roc_auc_score(
+        y.detach().cpu().numpy(),
+        torch.sigmoid(x).detach().cpu().numpy(),
+    )
 
 
 def sklearn_auroc(x, y):

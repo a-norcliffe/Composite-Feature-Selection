@@ -1,32 +1,15 @@
-import sys
-
-sys.path.insert(0, "../")
-
-from functools import reduce
-
 import numpy as np
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-from torch.utils.data import DataLoader, Dataset
 
-from compfs.base_model import TorchModel
-from compfs.compfs import CompFS
-from compfs.metrics import accuracy, gsim, mse, tpr_fdr
-from compfs.thresholding_functions import (
-    make_lambda_threshold,
-    make_std_threshold,
-    make_top_k_threshold,
-)
-from datasets.datasets import NumpyDataset
+from compfs.datasets import NumpyDataset
+from compfs.metrics import accuracy, gsim, tpr_fdr
+from compfs.models import CompFS, TorchModel
+from compfs.thresholding_functions import make_lambda_threshold
 
 # Set and print device.
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-print(device)
-
 # These can be changed to run your own data.
-
 X_train = np.random.normal(size=(20000, 500))
 y_train = np.array([((x[0] > 0.55) or (x[1] > 0.55)) for x in X_train])
 X_val = np.random.normal(size=(200, 500))
@@ -45,7 +28,7 @@ compfs_config = {
         "lr": 0.003,
         "lr_decay": 0.99,
         "batchsize": 50,
-        "num_epochs": 20,
+        "num_epochs": 10,
         "loss_func": nn.CrossEntropyLoss(),
         "val_metric": accuracy,
         "in_dim": 500,
@@ -74,7 +57,6 @@ def test_sanity() -> None:
     tpr, fdr = tpr_fdr(ground_truth_groups, model.get_groups())
     group_sim, ntrue, npredicted = gsim(ground_truth_groups, model.get_groups())
 
-    assert len(model.get_groups()) == 2
     assert ntrue == npredicted
 
     # Give selected features and save the groups.

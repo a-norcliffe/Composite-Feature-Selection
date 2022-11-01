@@ -1,8 +1,7 @@
 """Implementation of Ensemble STG."""
 
 # stdlib
-import os
-import os.path as osp
+from pathlib import Path
 
 import numpy as np
 import torch
@@ -160,7 +159,7 @@ class EnsembleSTG(nn.Module):
         output = self.predict(x)
         full_model_performance = val_metric(output, y)
         np.save(
-            osp.join(folder, "full_model_performance.npy"),
+            Path(folder) / "full_model_performance.npy",
             np.array([full_model_performance]),
         )
         print(

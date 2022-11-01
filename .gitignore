@@ -67,8 +67,11 @@ MANIFEST
 # Per-project virtualenvs
 .venv*/
 .conda*/
-datasets
 generated
 image_bin
 release
 results
+MNIST
+chem_data
+*.zip
+*.npy

@@ -1,6 +1,8 @@
 """Library to turn chemistry datasets into vectors and save them as numpy files."""
 
 # third party
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 from rdkit import Chem
@@ -186,20 +188,21 @@ def prepare_chem_dataset(train_path, test_path, logic):
 
 def make_chem_data(logic_id):
     # Load in the csv files and turn into numpy files for the datasets.
-    basepath = "./datasets/chem_data/"
-    outpath = "./datasets/chem_data/"
+    path = Path(__file__).parent
+    basepath = path / "chem_data"
+    outpath = path / "chem_data"
     try:
         X_train, X_test, Y_train, Y_test = prepare_chem_dataset(
             "{}/logic_{}_train.csv".format(basepath, logic_id),
             "{}/logic_{}_test.csv".format(basepath, logic_id),
             "logic_{}".format(logic_id),
         )
-        np.save("{}/logic_{}_X_train.npy".format(outpath, logic_id), X_train)
-        np.save("{}/logic_{}_X_test.npy".format(outpath, logic_id), X_test)
-        np.save("{}/logic_{}_Y_train.npy".format(outpath, logic_id), Y_train)
-        np.save("{}/logic_{}_Y_test.npy".format(outpath, logic_id), Y_test)
+        np.save(outpath / f"logic_{logic_id}_X_train.npy", X_train)
+        np.save(outpath / f"logic_{logic_id}_X_test.npy", X_test)
+        np.save(outpath / f"logic_{logic_id}_Y_train.npy", Y_train)
+        np.save(outpath / f"logic_{logic_id}_Y_test.npy", Y_test)
     except FileNotFoundError:
         print(
             "Data not found, please download at https://github.com/google-research/graph-attribution/raw/main/data/all_16_logics_train_and_test.zip and place in datasets/chem_data",
         )
-        exit()
+        raise

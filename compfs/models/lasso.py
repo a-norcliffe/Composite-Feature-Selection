@@ -1,14 +1,12 @@
 """Lasso for binary classification, adapted to work with the trainer and code for CompFS code."""
 
 # stdlib
-import os
-import os.path as osp
+from pathlib import Path
 
 # third party
 import numpy as np
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 
 class Lasso(nn.Module):
@@ -87,10 +85,11 @@ class Lasso(nn.Module):
         print("Not implemented for LASSO")
 
     def save_evaluation_info(self, x, y, folder, val_metric):
+        folder = Path(folder)
         output = self.predict(x)
         full_model_performance = val_metric(output, y)
         np.save(
-            osp.join(folder, "full_model_performance.npy"),
+            folder / "full_model_performance.npy",
             np.array([full_model_performance]),
         )
         print(
