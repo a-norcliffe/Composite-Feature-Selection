@@ -16,7 +16,7 @@ Official code for the NeurIPS 2022 paper [**Composite Feature Selection using De
 Current feature selection methods only return a list of predictive features. However, features often don't act alone, but with each other. Take XOR as a simple example, feature 1 *literally* provides
 no information without also knowing the value of feature 2 and vice versa. This work aims to solve the problem of **Composite Feature Selection**, where we find the groups of features that act together.
 
-![Deep Graph Mapper](figures_for_readme/compfs_model_figure.png)
+![Deep Graph Mapper](https://github.com/vanderschaarlab/Composite-Feature-Selection/raw/main/figures_for_readme//compfs_model_figure.png)
 *Our model CompFS. We use an ensemble of group selection models to discover
 composite features and an aggregate predictor to combine these features when issuing predictions.*
 
@@ -33,10 +33,10 @@ The selected groups are sparse and exhibit minimum overlap.
 Furthermore, we propose a new metric to measure similarity between discovered groups and the ground truth.
 We demonstrate the utility of our model on multiple synthetic tasks and semi-synthetic chemistry datasets, where the ground truth structure is known, as well as an image dataset and a real-world cancer dataset.
 
-![Deep Graph Mapper](figures_for_readme/compfs_adapted_loss.png)
+![Deep Graph Mapper](https://github.com/vanderschaarlab/Composite-Feature-Selection/raw/main/figures_for_readme/compfs_adapted_loss.png)
 *The novel regularisation component of the loss function. The first term makes groups small, the second term makes groups different.*
 
-![Deep Graph Mapper](figures_for_readme/compfs_gsim.png)
+![Deep Graph Mapper](https://github.com/vanderschaarlab/Composite-Feature-Selection/raw/main/figures_for_readme/compfs_gsim.png)
 *Our new metric for determining similarity between sets of discovered group features. Our metric is based on a normalized Jaccard similarity between the ground truth and the discovered groups.*
 
 
