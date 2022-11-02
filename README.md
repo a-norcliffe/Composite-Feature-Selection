@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/a-norcliffe/Composite-Feature-Selection/blob/master/LICENSE.txt)
 [![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
 
-Official code for the NeurIPS 2022 paper [**Composite Feature Selection using Deep Ensembles**](https://github.com/a-norcliffe/Composite-Feature-Selection)
+Official code for the NeurIPS 2022 paper [**Composite Feature Selection using Deep Ensembles**](https://arxiv.org/abs/2211.00631)
 (
 [Fergus Imrie](https://fimrie.github.io/),
 [Alexander Norcliffe](https://twitter.com/alexnorcliffe98),
